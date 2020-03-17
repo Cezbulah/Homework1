@@ -1,7 +1,5 @@
-from typing import List
 import datetime
 import pandas as pd
-from typing import List
 
 
 CONFIRMED_CASES_URL = f"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data" \
@@ -36,7 +34,7 @@ def poland_cases_by_date(day: int, month: int, year: int = 2020) -> int:
     return int(result)
 
 
-
+print(poland_cases_by_date(7,3,2020))
 def top5_countries_by_date(day: int, month: int, year: int = 2020) -> List[str]:
     """
     Returns the top 5 infected countries given a date (confirmed cases).
@@ -52,8 +50,8 @@ def top5_countries_by_date(day: int, month: int, year: int = 2020) -> List[str]:
     """
 
     # Your code goes here (remove pass)
-    CONFIRMED_CASES_URL = f"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv "    
-    confirmed_cases = pd.read_csv(CONFIRMED_CASES_URL, error_bad_lines=False)
+    url = f"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
+    df = pd.read_csv(url, error_bad_lines=False)
     year-=2000
     data = f"{month}/{day}/{year}"
     grouped = confirmed_cases.groupby("Country/Region", as_index=False).sum(level=0)
@@ -61,6 +59,7 @@ def top5_countries_by_date(day: int, month: int, year: int = 2020) -> List[str]:
     top5_countries = list(sort_all["Country/Region"].values[:5])
     return top5_countries
 
+print(top5_countries(27,2,2020))
 
 # Function name is wrong, read the pydoc
 def no_new_cases_count(day: int, month: int, year: int = 2020) -> int:
@@ -87,3 +86,4 @@ def no_new_cases_count(day: int, month: int, year: int = 2020) -> int:
     wynikowo = confirmed_cases.loc[confirmed_cases[data_teraz]!=confirmed_cases[wczoraj_string]]
     return int(wynikowo.shape[0])
 
+print(no_new_cases_count(11,2,2020))
