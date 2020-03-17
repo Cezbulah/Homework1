@@ -1,6 +1,6 @@
 import datetime
 import pandas as pd
-
+from typing import List
 
 CONFIRMED_CASES_URL = f"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data" \
                       f"/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv "
@@ -35,7 +35,7 @@ def poland_cases_by_date(day: int, month: int, year: int = 2020) -> int:
 
 
 print(poland_cases_by_date(7,3,2020))
-def top5_countries_by_date(day: int, month: int, year: int = 2020):
+def top5_countries_by_date(day: int, month: int, year: int = 2020):-> List[str]
     """
     Returns the top 5 infected countries given a date (confirmed cases).
     Ex.
@@ -50,6 +50,9 @@ def top5_countries_by_date(day: int, month: int, year: int = 2020):
     """
 
     # Your code goes here (remove pass)
+    CONFIRMED_CASES_URL = f"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data" \
+                      f"/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv "
+    confirmed_cases = pd.read_csv(CONFIRMED_CASES_URL, error_bad_lines=False)
     fixed_year=year-2000
     grouped = confirmed_cases.groupby("Country/Region", as_index=False).sum(level=0)
     sort_all = grouped.sort_values(by=[f"{month}/{day}/{fixed_year}"], ascending = False)
