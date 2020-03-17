@@ -27,6 +27,7 @@ def poland_cases_by_date(day: int, month: int, year: int = 2020) -> int:
     """
     
     # Your code goes here (remove pass)
+    url = f"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
     df = pd.read_csv(url, error_bad_lines=False)
     year-=2000
     result = df.loc[df["Country/Region"]=="Poland"][f"{month}/{day}/{year}"].values[0]
