@@ -28,7 +28,7 @@ def poland_cases_by_date(day: int, month: int, year: int = 2020) -> int:
     """
     
     # Your code goes here (remove pass)
-    year=20
+    year-=2000
     result = df.loc[df["Country/Region"]=="Poland"][f"{month}/{day}/{year}"].values[0]
     return result
 
