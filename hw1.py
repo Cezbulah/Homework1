@@ -59,7 +59,7 @@ def top5_countries_by_date(day: int, month: int, year: int = 2020) -> List[str]:
     grouped = confirmed_cases.groupby("Country/Region", as_index=False).sum(level=0)
     sort_all = grouped.sort_values(by=data, ascending = False)
     top5_countries = list(sort_all["Country/Region"].values[:5])
-    return List(top5_countries)
+    return top5_countries
 
 
 # Function name is wrong, read the pydoc
