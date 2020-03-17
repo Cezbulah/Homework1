@@ -51,14 +51,12 @@ def top5_countries_by_date(day: int, month: int, year: int = 2020) -> List[str]:
     """
 ​
     # Your code goes here (remove pass)
-    url = f"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
-    df = pd.read_csv(url, error_bad_lines=False)
-    year-=2000
-    data = f"{month}/{day}/{year}"
+    year_fix = year - 2000
     grouped = confirmed_cases.groupby("Country/Region", as_index=False).sum()
-    sort_all = grouped.sort_values(by=data, ascending = False)
-    top5_countries = list(sort_all["Country/Region"].values[:5])
-    return top5_countries
+    sort_all = grouped.sort_values(by=[f"{month}/{day}/{year_fix}"], ascending = False)
+    top5_countries = sort_all["Country/Region"].tolist()
+    result = top5_countries[:5]
+    return result
 ​
 print(top5_countries(27,2,2020))
 ​
