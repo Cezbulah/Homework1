@@ -35,7 +35,7 @@ def poland_cases_by_date(day: int, month: int, year: int = 2020) -> int:
 
 
 print(poland_cases_by_date(7,3,2020))
-def top5_countries_by_date(day: int, month: int, year: int = 2020) -> List[str]:
+def top5_countries_by_date(day: int, month: int, year: int = 2020):
     """
     Returns the top 5 infected countries given a date (confirmed cases).
     Ex.
@@ -57,7 +57,6 @@ def top5_countries_by_date(day: int, month: int, year: int = 2020) -> List[str]:
     top5_countries = sort_all["Country/Region"].values[:5].tolist()
     return top5_countries
 
-print(top5_countries(27,2,2020))
 
 # Function name is wrong, read the pydoc
 def no_new_cases_count(day: int, month: int, year: int = 2020) -> int:
